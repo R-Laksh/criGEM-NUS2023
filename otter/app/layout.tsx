@@ -1,3 +1,4 @@
+import SideBar from "../components/SideBar";
 import '../styles/globals.css'
 import type { Metadata } from 'next'
 
@@ -16,7 +17,7 @@ export default function RootLayout({
       <head />
       <body>
         <div className="flex">
-        {/* Sidebar */}
+        <SideBar />
 
         {/* ClientProvider - Notification*/}
 
