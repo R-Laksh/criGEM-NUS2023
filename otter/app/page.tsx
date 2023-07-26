@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+import { BeakerIcon } from "@heroicons/react/24/outline";
 
 function HomePage() {
   return (
@@ -8,7 +9,7 @@ function HomePage() {
       <div>
         <div>
           <div className="flex flex-col items-center justify-content mb-5">
-            {/* RNA Icon */}
+            <BeakerIcon className="h-8 w-8" />
             <h2>Example Inputs</h2>
           </div>
 
