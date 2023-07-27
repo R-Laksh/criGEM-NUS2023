@@ -4,6 +4,7 @@ import SideBar from "../components/SideBar";
 import '../styles/globals.css';
 import type { Metadata } from 'next';
 import { authOptions } from "../pages/api/auth/[...nextauth]";
+import Login from "../components/Login";
 
 export const metadata: Metadata = {
   title: 'OTTER',
