@@ -1,9 +1,10 @@
 'use client';
 
-import { serverTimestamp } from "firebase/firestore";
+import { serverTimestamp, addDoc, collection } from "firebase/firestore";
 import { PaperAirplaneIcon } from "@heroicons/react/24/solid";
 import { useSession } from "next-auth/react";
 import { useState, FormEvent } from "react";
+import { db } from "../firebase";
 
 type Props = {
   chatId: string;
@@ -29,6 +30,11 @@ function ChatInput({ chatId }: Props ) {
         avatar: session?.user?.image! || `https://ui-avatars.com/api/?name=${session?.user?.name}`,
       }
     }
+
+    await addDoc(
+      collection(db, 'users', session?.user?.email!, 'chats', chatId, 'messages'),
+      message
+    )
   }
 
   return (
