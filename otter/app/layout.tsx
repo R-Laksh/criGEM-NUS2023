@@ -5,6 +5,7 @@ import '../styles/globals.css';
 import type { Metadata } from 'next';
 import { authOptions } from "../pages/api/auth/[...nextauth]";
 import Login from "../components/Login";
+import ClientProvider from "../components/ClientProvider";
 
 export const metadata: Metadata = {
   title: 'OTTER',
@@ -32,7 +33,7 @@ export default async function RootLayout({
               <SideBar />
             </div>
 
-          {/* ClientProvider - Notification*/}
+          <ClientProvider />
 
           <div className="bg-[#85adcc] flex-1">{children}</div>
           </div>
