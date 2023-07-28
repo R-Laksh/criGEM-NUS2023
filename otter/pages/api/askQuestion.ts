@@ -1,6 +1,9 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
 import query from '../../lib/queryApi';
+import admin from "firebase-admin";
+import OtterLogo from "../../components/OtterLogo.png"
+import { adminDb } from '@/firebaseAdmin';
 
 type Data = {
     answer: string
@@ -29,8 +32,21 @@ export default async function handler(
 
     const message: Message = {
         text: response || "OTTER was unable to find an answer for that!",
-        
-    }
+        createdAt: admin.firestore.Timestamp.now(),
+        user: {
+            _id: 'OTTER',
+            name: 'OTTER',
+            avatar: '',
+        },
+    };
 
-    res.status(200).json( { name: 'John Doe' })
+    await adminDb
+    .collection('users')
+    .doc(session?.user?.email)
+    .collection("chats")
+    .doc(chatId)
+    .collection("messages")
+    .add(message);
+
+    res.status(200).json( { answer: message.text })
 }
