@@ -29,7 +29,7 @@ export default async function handler(
 
     const message: Message = {
         text: response || "OTTER was unable to find an answer for that!",
-        create
+        
     }
 
     res.status(200).json( { name: 'John Doe' })
