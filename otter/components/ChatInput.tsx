@@ -5,6 +5,7 @@ import { PaperAirplaneIcon } from "@heroicons/react/24/solid";
 import { useSession } from "next-auth/react";
 import { useState, FormEvent } from "react";
 import { db } from "../firebase";
+import { toast } from "react-hot-toast";
 
 type Props = {
   chatId: string;
@@ -13,6 +14,9 @@ type Props = {
 function ChatInput({ chatId }: Props ) {
   const [prompt, setPrompt] = useState("");
   const { data: session } = useSession();
+
+  // TODO: useSWR to get model
+  const model = "text-davinci-003";
 
   const sendMessage = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -35,7 +39,24 @@ function ChatInput({ chatId }: Props ) {
       collection(db, 'users', session?.user?.email!, 'chats', chatId, 'messages'),
       message
     )
-  }
+
+    const notification = toast.loading('OTTER is thinking...');
+
+    await fetch('/api/askQuestion', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        prompt: input, chatId, model, session
+      })
+    }).then(() => {
+      // Toast notification to say successful!
+      toast.success('OTTER has responded!', {
+        id: notification,
+      });
+    });
+  };
 
   return (
   <div className="bg-blue-700/50 text-white rounded-lg text-sm">
