@@ -56,7 +56,7 @@ function ChatInput({ chatId }: Props ) {
         id: notification,
       });
     });
-  };
+  }
 
   return (
   <div className="bg-blue-700/50 text-white rounded-lg text-sm">
