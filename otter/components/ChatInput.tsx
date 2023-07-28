@@ -1,8 +1,9 @@
 'use client';
 
+import { serverTimestamp } from "firebase/firestore";
 import { PaperAirplaneIcon } from "@heroicons/react/24/solid";
 import { useSession } from "next-auth/react";
-import { useState } from "react";
+import { useState, FormEvent } from "react";
 
 type Props = {
   chatId: string;
@@ -12,9 +13,27 @@ function ChatInput({ chatId }: Props ) {
   const [prompt, setPrompt] = useState("");
   const { data: session } = useSession();
 
+  const sendMessage = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (!prompt) return; 
+
+    const input = prompt.trim();
+    setPrompt("");
+
+    const message: Message = {
+      text: input, 
+      createdAt: serverTimestamp(),
+      user: {
+        _id: session?.user?.email!,
+        name: session?.user?.name!,
+        avatar: session?.user?.image! || `https://ui-avatars.com/api/?name=${session?.user?.name}`,
+      }
+    }
+  }
+
   return (
   <div className="bg-blue-700/50 text-white rounded-lg text-sm">
-    <form className="p-5 space-x-5 flex">
+    <form onSubmit={sendMessage} className="p-5 space-x-5 flex">
       <input 
         className="bg-transparent focus:outline-none flex-1 
         disabled:cursor-not-allowed disabled:text-gray-300"
