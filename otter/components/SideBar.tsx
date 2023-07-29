@@ -7,6 +7,7 @@ import { db } from "../firebase";
 import NewChat from "./NewChat";
 import ChatRow from "./ChatRow";
 
+
 function SideBar() {
     const { data: session } = useSession();
 
@@ -19,10 +20,10 @@ function SideBar() {
   return (
     <div className="p-2 flex flex-col h-screen">
         <div className="flex-1">
-            {/* NewChat */}
+
             <NewChat />
-            <div>
-                {/* ModelSelection */}
+            <div className="hidden sm:inline">
+                
             </div>
 
             {/* Map through the ChatRows */}
