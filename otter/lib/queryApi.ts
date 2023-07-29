@@ -12,7 +12,8 @@ const query = async (prompt: string, chatId: string, model: string) => {
     }).then(res => res.data.choices[0].text)
     .catch(
         (err) => 
-        `OTTER was unable to find an output for that! (Error: ${err.message})`
+        // `OTTER was unable to find an output for that! (Error: ${err.message})`
+        "I'm still waiting for my API, sorry :("
     );
 
     return res;

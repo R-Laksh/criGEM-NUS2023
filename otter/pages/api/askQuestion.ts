@@ -2,7 +2,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import query from '../../lib/queryApi';
 import admin from "firebase-admin";
-import OtterLogo from "../../components/OtterLogo.png"
 import { adminDb } from '@/firebaseAdmin';
 
 type Data = {
@@ -36,7 +35,7 @@ export default async function handler(
         user: {
             _id: 'OTTER',
             name: 'OTTER',
-            avatar: '',
+            avatar: "./OtterLogo.png"
         },
     };
 
