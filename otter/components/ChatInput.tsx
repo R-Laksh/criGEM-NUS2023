@@ -40,7 +40,7 @@ function ChatInput({ chatId }: Props ) {
       message
     )
 
-    const notification = toast.loading('OTTER is thinking...');
+    const notification = toast.loading('OTTER is calculating...');
 
     await fetch('/api/askQuestion', {
       method: 'POST',
