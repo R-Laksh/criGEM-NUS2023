@@ -3,7 +3,8 @@ fastapi
 gunicorn
 jupyter
 pandas
-pypr
+pypyr
 python-dotenv
 tensorflow
 uvicorn
+boto3
