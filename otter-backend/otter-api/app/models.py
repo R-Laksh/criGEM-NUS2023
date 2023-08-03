@@ -9,3 +9,4 @@ class OTTERInference(Model):
     rna_sequence = columns.Text(index=True)
     # label = columns.Text()
     binding_score = columns.Float()
+    model_version = columns.Text(default='v1')
