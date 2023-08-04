@@ -42,9 +42,29 @@ def on_startup():
     DB_SESSION = db.get_session()
     sync_table(OTTERInference)
 
-@app.get("/") 
-def read_index(q:Optional[str] = None):
-    return {"rna_sequence": "binding_score"}   
+@app.get("/")
+def read_index(q: Optional[str] = None):
+    print("Received RNA sequence:", q)
+
+    if q is None:
+        print("Error: RNA sequence not provided.")
+        return {"error": "Please provide an RNA sequence (q parameter)"}
+
+    # Predict binding score using the machine learning model
+    global AI_MODEL
+    preds_dict = AI_MODEL.predict_text(q)
+    print("Predicted values:", preds_dict)
+    top = preds_dict.get('top')
+    
+    # Debugging statements
+    print("Type of top:", type(top))
+    print("Keys in top:", top.keys())
+
+    binding_score = top.get('binding_score')
+    print("Binding Score:", binding_score)
+
+    return {"rna_sequence": q, "binding_score": binding_score}
+
     
 
 @app.post("/") 
