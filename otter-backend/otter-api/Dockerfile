@@ -4,11 +4,14 @@ COPY .env /app/.env
 COPY ./app /app/app
 COPY ./requirements.txt ./app/requirements.txt
 COPY ./entrypoint.sh /app/entrypoint.sh
+COPY ./pipelines /app/pipelines/
 
 RUN chmod +x entrypoint.sh
 
 WORKDIR /app
 
 RUN python -m venv /opt/venv && /opt/venv/bin/python -m pip install -r requirements.txt
+
+RUN /opt/venv/bin/python -m pypyr /app/pipelines//otter-model-download
 
 CMD [ "entrypoint.sh"]
