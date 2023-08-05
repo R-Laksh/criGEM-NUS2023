@@ -14,4 +14,6 @@ RUN python -m venv /opt/venv && /opt/venv/bin/python -m pip install -r requireme
 
 RUN /opt/venv/bin/python -m pypyr /app/pipelines/otter-model-download
 
-CMD [ "entrypoint.sh"]
+RUN /opt/venv/bin/python -m pypyr /app/pipelines/decrypt
+
+CMD [ "./entrypoint.sh"]

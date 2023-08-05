@@ -1,4 +1,5 @@
 otter-api/app/ignored/
+otter-api/app/decrypted/
 models/
 *.pkl
 datasets/exports/*.json

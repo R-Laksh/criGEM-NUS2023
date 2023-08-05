@@ -2,4 +2,4 @@
 
 RUN_PORT=${PORT:-8000}
 
-/opt/venv/bin/gunicorn --worker-tmp-dir /dev/shm -k uvicorn.workers.UvicornWorker --bind "0.0.0.0:${PORT}"
+/opt/venv/bin/gunicorn --worker-tmp-dir /dev/shm -k uvicorn.workers.UvicornWorker --bind "0.0.0.0:${PORT}" app.main:app
