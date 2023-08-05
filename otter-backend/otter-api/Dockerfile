@@ -12,6 +12,6 @@ WORKDIR /app
 
 RUN python -m venv /opt/venv && /opt/venv/bin/python -m pip install -r requirements.txt
 
-RUN /opt/venv/bin/python -m pypyr /app/pipelines//otter-model-download
+RUN /opt/venv/bin/python -m pypyr /app/pipelines/otter-model-download
 
 CMD [ "entrypoint.sh"]
