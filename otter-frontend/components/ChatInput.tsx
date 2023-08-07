@@ -13,7 +13,7 @@ type Props = {
   chatId: string;
 }
 
-function ChatInput({ chatId }: Props ) {
+function ChatInput({ chatId }: Props) {
   const [prompt, setPrompt] = useState("");
   const { data: session } = useSession();
 
@@ -22,26 +22,26 @@ function ChatInput({ chatId }: Props ) {
   });
 
   const sendMessage = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    if (!prompt) return; 
+    e.preventDefault();
+    if (!prompt) return;
 
     const input = prompt.trim();
     setPrompt("");
 
-    const message: Message = {
-      text: input, 
+    const message = {
+      text: input,
       createdAt: serverTimestamp(),
       user: {
         _id: session?.user?.email!,
         name: session?.user?.name!,
         avatar: session?.user?.image! || `https://ui-avatars.com/api/?name=${session?.user?.name}`,
       }
-    }
+    };
 
     await addDoc(
       collection(db, 'users', session?.user?.email!, 'chats', chatId, 'messages'),
       message
-    )
+    );
 
     const notification = toast.loading('OTTER is calculating...');
 
@@ -59,34 +59,32 @@ function ChatInput({ chatId }: Props ) {
         id: notification,
       });
     });
-  }
+  };
 
   return (
-  <div className="bg-blue-600/30 text-white rounded-lg text-sm">
-    <form onSubmit={sendMessage} className="p-5 space-x-5 flex">
-      <input 
-        className="bg-transparent focus:outline-none flex-1 
-        disabled:cursor-not-allowed disabled:text-gray-300"
-        disabled={!session}
-        value={prompt}
-        onChange={e => setPrompt(e.target.value)}
-        type="text"
-        placeholder="Enter your RNA sequence..."
-      />
-      <button 
-        disabled={!prompt || !session} type="submit"
-        className="bg-[#11A37F] hover:opacity-50 text-white font-bold
-        px-4 py-2 rounded disabled:bg-gray-300 disabled:cursor-not-allowed"
-      >
-        <PaperAirplaneIcon className="h-4 w-4 -rotate-45" />
-      </button>
-    </form>
-
-    <div className="md:hidden">
-      <ModelSelection />
+    <div className="bg-gray-100 rounded-lg p-4 flex flex-col">
+      <form onSubmit={sendMessage} className="flex space-x-4">
+        <input
+          className="flex-1 px-4 py-2 bg-white rounded-lg focus:outline-none"
+          disabled={!session}
+          value={prompt}
+          onChange={(e) => setPrompt(e.target.value)}
+          type="text"
+          placeholder="Enter your RNA sequence..."
+        />
+        <button
+          disabled={!prompt || !session}
+          type="submit"
+          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg"
+        >
+          <PaperAirplaneIcon className="h-5 w-5" />
+        </button>
+      </form>
+      <div className="mt-2 md:hidden">
+        <ModelSelection />
+      </div>
     </div>
-  </div>
   );
 }
 
-export default ChatInput
+export default ChatInput;

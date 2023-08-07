@@ -22,9 +22,11 @@ function SideBar() {
         <div className="flex-1">
 
             <NewChat />
-            <div className="hidden sm:inline">
-                <ModelSelection />
-            </div>
+            {session && (
+              <div className="hidden sm:inline">
+                  <ModelSelection />
+              </div>
+            )}
 
             <div className="flex flex-col space-y-2 my-2">
 
@@ -53,4 +55,4 @@ function SideBar() {
   )
 }
 
-export default SideBar
+export default SideBar;

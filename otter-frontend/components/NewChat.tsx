@@ -23,7 +23,7 @@ function NewChat() {
   };
 
   return (
-    <div onClick={createNewChat} className="border-blue-300 border 
+    <div onClick={createNewChat} className="border-white-300 border 
     chatRow">
         <PlusIcon className="h-4 w-4"/>
         <p>New Input</p>
@@ -31,4 +31,5 @@ function NewChat() {
   );
 }
 
-export default NewChat
+export default NewChat 
+

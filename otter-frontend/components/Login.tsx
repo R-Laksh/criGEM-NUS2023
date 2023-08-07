@@ -5,7 +5,7 @@ import OtterLogo from "./OtterLogo.png"
 
 function Login() {
   return (
-    <div className="bg-[#85adcc] h-screen flex flex-col items-center
+    <div className="bg-black h-screen flex flex-col items-center
     justify-center text-center">
     <Image
         src={OtterLogo}
@@ -23,4 +23,5 @@ function Login() {
   );
 }
 
-export default Login
+export default Login 
+
