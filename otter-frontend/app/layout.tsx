@@ -35,6 +35,7 @@ export default async function RootLayout({
               <div className="bg-[black] max-w-xs h-screen 
               overflow-y-auto md:min-w-[20rem]">
                 <SideBar />
+              
               </div>
             </div>
           )}
