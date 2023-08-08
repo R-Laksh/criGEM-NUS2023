@@ -7,9 +7,16 @@ import { db } from "../firebase";
 import NewChat from "./NewChat";
 import ChatRow from "./ChatRow";
 import ModelSelection from "./ModelSelection";
+import { useRouter } from "next/navigation";
+
 
 function SideBar() {
     const { data: session } = useSession();
+    const router = useRouter();
+
+    const goToOTTERLand = () => {
+      router.push('/OTTERLand');
+    };
 
     const [chats, loading, error] = useCollection(
       session && query(collection(db, 'users', session.user?.email!, 'chats'),
@@ -40,7 +47,8 @@ function SideBar() {
                 <ChatRow key={chat.id} id={chat.id} />
               ))}
             </div>
-        </div>
+
+          </div>
 
         {session && (
           <img 
@@ -51,6 +59,12 @@ function SideBar() {
             hover:opacity-50"
           />
         )}
+        <button
+          onClick={goToOTTERLand} // Use the function to handle navigation
+          className="block py-2 px-4 rounded-lg bg-blue-500 text-white font-semibold text-center hover:bg-blue-600"
+        >
+          Go to OTTER Land
+        </button>
     </div>
   )
 }

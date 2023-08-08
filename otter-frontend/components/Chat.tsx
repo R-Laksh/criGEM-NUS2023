@@ -27,7 +27,7 @@ function Chat({ chatId }: Props) {
       {messages?.empty ? (
         <div className="flex flex-col items-center mt-10">
           <p className="text-center text-gray-600">
-            Key in your RNA seqeunce to get started!
+            Key in your RNA sequence to get started!
           </p>
           <ArrowDownCircleIcon className="h-10 w-10 mt-5 text-gray-400 animate-bounce" />
         </div>
