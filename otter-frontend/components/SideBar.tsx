@@ -15,7 +15,7 @@ function SideBar() {
     const router = useRouter();
 
     const goToOTTERLand = () => {
-      router.push('/OTTERLand');
+      router.push('/OTTERSide');
     };
 
     const [chats, loading, error] = useCollection(
@@ -63,7 +63,7 @@ function SideBar() {
           onClick={goToOTTERLand} // Use the function to handle navigation
           className="block py-2 px-4 rounded-lg bg-blue-500 text-white font-semibold text-center hover:bg-blue-600"
         >
-          Go to OTTER Land
+          Go to the OTTER side
         </button>
     </div>
   )
