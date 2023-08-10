@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from 'react';
-import OTTERLogo from "./OtterLogo.png"
+import { useSession} from "next-auth/react";
 import {
   BellIcon,
   ChatBubbleLeftIcon,
@@ -18,6 +18,7 @@ import {
 } from "@heroicons/react/24/solid";
 
 function Header() {
+  const { data: session } = useSession();
   return (
     <div className="sticky top-0 z-50 flex bg-white px-4 py-2 shadow-sm">
       <div className="relative h-10 w-21 flex-shrink-0 cursor-pointer">
@@ -63,11 +64,20 @@ function Header() {
 
       {/* Sign in/ Sign out button */}
       <div className="hidden cursor-pointer items-center space-x-2 border border-gray-100 p-2 lg:flex">
-        <div className="relative h-5 w-5 flex-shrink-0">
-          <Image objectFit="contain" src={OTTERLogo.src} layout="fill" alt="" />
+      {session && (
+        <div className="hidden items-center space-x-2 lg:flex">
+          <div className="relative h-12 w-12">
+            <Image
+              src={session?.user?.image ?? ""}
+              alt="Profile pic"
+              layout="fill"
+              objectFit="contain"
+            />
+          </div>
+          <p>{session?.user?.name}</p>
         </div>
-        <p className="text-gray-400">Sign In</p>
-      </div>
+      )}  
+        </div>
     </div>
   );
 }
