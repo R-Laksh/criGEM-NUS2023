@@ -14,7 +14,7 @@ function SideBar() {
     const { data: session } = useSession();
     const router = useRouter();
 
-    const goToOTTERLand = () => {
+    const goToOTTERSide = () => {
       router.push('/OTTERSide');
     };
 
@@ -60,7 +60,7 @@ function SideBar() {
           />
         )}
         <button
-          onClick={goToOTTERLand} // Use the function to handle navigation
+          onClick={goToOTTERSide} // Use the function to handle navigation
           className="block py-2 px-4 rounded-lg bg-blue-500 text-white font-semibold text-center hover:bg-blue-600"
         >
           Go to the OTTER side
