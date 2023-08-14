@@ -35,7 +35,7 @@ function Message({ message }: Props) {
         className="w-8 h-8 rounded-full mr-3"
       />
       <div className={`rounded-lg p-3 max-w-xs ${isOTTER ? "bg-[#F0F4F8] text-black" : "bg-[#D3E3FC] text-black"}`}>
-        <p className="text-sm break-words">{message.text}</p>
+        <p className="text-lg break-words" style={{ whiteSpace: "nowrap" }}>{message.text}</p> 
       </div>
     </div>
   );

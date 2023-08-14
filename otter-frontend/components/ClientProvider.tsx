@@ -13,9 +13,9 @@ import { Toaster } from "react-hot-toast";
 
 export default function ClientProvider() {
     return (
-        <div className="fixed top-4 right-4 z-50">
+        <div className="fixed top-4 center-4 z-50">
             <Toaster
-                position="top-right"
+                position="top-center"
                 toastOptions={{
                     duration: 4000, // Display duration in milliseconds
                     style: {

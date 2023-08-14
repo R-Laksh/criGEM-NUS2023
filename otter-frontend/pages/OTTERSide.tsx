@@ -10,17 +10,16 @@ import PostBox from "../components/PostBox";
 const OTTERSide: NextPage = () => {
 
   return (
-    <div className="">
+    <div>
       <Head>
         <title>OTTERSIDE</title>
       </Head>
       <ApolloProvider client={client}>
         <SessionProvider>
           <Header />
-          {/* PostBox */}
-          <PostBox />
-
-
+          <div className="my-7 mx-auto max-w-5xl"> 
+            <PostBox />
+          </div>
           <div>
             {/* Feed */}
           </div>

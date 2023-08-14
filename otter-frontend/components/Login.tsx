@@ -5,7 +5,7 @@ import OtterLogo from "./OtterLogo.png"
 
 function Login() {
   return (
-    <div className="bg-black h-screen flex flex-col items-center
+    <div className="bg-white h-screen flex flex-col items-center
     justify-center text-center">
     <Image
         src={OtterLogo}
@@ -15,7 +15,7 @@ function Login() {
     />
     <button 
       onClick={() => signIn('google')} 
-      className="text-white font-bold text-3xl animate-pulse"
+      className="text-black font-bold text-3xl animate-pulse"
     >
       Sign In to use OTTER
     </button>

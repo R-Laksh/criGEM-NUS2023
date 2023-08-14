@@ -1,7 +1,7 @@
 import { useSession } from 'next-auth/react';
 import React, { useState } from 'react';
 import Avatar from "./Avatar";
-import { LinkIcon, PhotoIcon } from "@heroicons/react/24/outline";
+import { LinkIcon, PhotoIcon } from "@heroicons/react/24/outline"; // Fixed import path
 import { useForm } from "react-hook-form";
 
 type FormData = {
@@ -22,8 +22,12 @@ function PostBox() {
         formState: { errors },
     } = useForm<FormData>();
 
+    const onSubmit = handleSubmit (async(formData)  => {
+        console.log(formData)
+    })
+
     return (
-        <form className="sticky top-16 z-50 rounded-md border border-gray-300 bg-white p-2">
+        <form onSubmit={onSubmit} className="sticky top-16 z-50 rounded-md border border-gray-300 bg-white p-2">
             <div className="flex items-center space-x-3">
                 <Avatar />
 
@@ -53,7 +57,7 @@ function PostBox() {
                         <p className="min-w-[90px]">Space:</p>
                         <input
                             className="m-2 flex-1 bg-blue-50 p-2 outline-none"
-                            {...register('space')}
+                            {...register('space', { required: true })}
                             type="text"
                             placeholder="i.e. Datasets"
                         />
@@ -72,6 +76,21 @@ function PostBox() {
                     />
                 </div>
             )}
+
+            {/* Errors */}
+            {Object.keys(errors).length > 0 && (
+                <div className="space-y-2 p-2 text-red-500">
+                    {errors.postTitle?.type === 'required' && (
+                        <p>A Post Title is required</p>
+                    )}
+                    {errors.space?.type === 'required' && (
+                        <p>A Space is required</p>
+                    )}
+                </div>
+            )}
+
+            {watch ('postTitle') && (
+                <button className="w-full rounded-full bg-blue-400 p-2 text-white">Create Post</button>)}
         </form>
     );
 }
