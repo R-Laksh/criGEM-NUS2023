@@ -3,6 +3,10 @@ import React, { useState } from 'react';
 import Avatar from "./Avatar";
 import { LinkIcon, PhotoIcon } from "@heroicons/react/24/outline"; // Fixed import path
 import { useForm } from "react-hook-form";
+import { useMutation } from "@apollo/client";
+import { ADD_POST, ADD_SPACE } from "../graphql/mutations";
+import client from "../apollo-client";
+import { GET_SPACE_BY_TOPIC } from '@/graphql/queries';
 
 type FormData = {
     postTitle: string;
@@ -13,6 +17,9 @@ type FormData = {
 
 function PostBox() {
     const { data: session } = useSession();
+    const [addPost] = useMutation(ADD_POST);
+    const [addSpace] = useMutation(ADD_SPACE);
+    
     const [imageBoxOpen, setImageBoxOpen] = useState<boolean>(false);
     const {
         register,
@@ -24,6 +31,73 @@ function PostBox() {
 
     const onSubmit = handleSubmit (async(formData)  => {
         console.log(formData)
+
+        try {
+            // Query for the space topic...
+            const {
+                data: {getSpaceListByTopic}, 
+            } = await client.query({
+                query: GET_SPACE_BY_TOPIC,
+                variables: {
+                    topic: formData.space
+                }
+            })
+
+            const spaceExists = getSpaceListByTopic.length > 0;
+
+            if (!spaceExists) {
+                // create space...
+                console.log('Space is new! -> creating a NEW space!')
+
+                const {data: { insertSpace: newSpace } } = await addSpace({
+                    variables: {
+                        topic: formData.space
+                    }
+                })
+
+                console.log('Creating post...', formData)
+                const image = formData.postImage || ''
+
+                const {
+                    data: { insertPost: newPost },
+                } = await addPost({
+                    variables: {
+                        body: formData.postBody, 
+                        image: image,
+                        space_id: newSpace.id,
+                        title: formData.postTitle,
+                        name: session?.user?.name,
+                    },
+                })
+
+                console.log("New postadded:", newPost);
+            } else {
+                // use existing space...
+                console.log('Using existing space')
+                console.log(getSpaceListByTopic);
+
+                const Image = formData.postImage || ''
+
+                const {data: {insertPost: newPost}} = await addPost({
+                  variables: {
+                    body: formData.postBody, 
+                    image: imageBoxOpen,
+                    space_id: getSpaceListByTopic[0].id,
+                    title: formData.postTitle,
+                    name: session?.user?.name,
+                  }  
+                })
+
+                console.log('New post added:', newPost)
+            }
+        // After the post has been added!
+        setValue('postBody', '')
+        setValue('postImage', '')
+        setValue('postTitle', '')
+        setValue('space', '')
+        } catch (error) {
+
+        }
     })
 
     return (

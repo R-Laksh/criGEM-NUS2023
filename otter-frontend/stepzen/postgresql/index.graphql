@@ -133,6 +133,15 @@ type Query {
       table: "space"
       configuration: "postgresql_config"
     )
+  getSpaceListByTopic(topic: String!): [Space]
+    @dbquery(
+      type: "postgresql"
+      query: """
+      select * from "space" where "topic" = $1
+      """
+      configuration: "postgresql_config"
+    )
+
   spaceList: [Space]
     @dbquery(
       type: "postgresql"
@@ -263,7 +272,6 @@ type Mutation {
   insertPost(
     body: String
     name: String
-    image: String
     created_at: DateTime
     title: String
     space_id: ID
@@ -302,6 +310,13 @@ type Mutation {
       configuration: "postgresql_config"
     )
   " Mutations for type 'Space' "
+  insertSpace( topic: String! ): Space
+    @dbquery(
+      type: "postgresql"
+      table: "space"
+      dml: INSERT
+      configuration: "postgresql_config"
+    )
   deleteSpace(id: ID!): Space
     @dbquery(
       type: "postgresql"
