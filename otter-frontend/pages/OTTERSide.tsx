@@ -6,6 +6,7 @@ import { SessionProvider } from 'next-auth/react';
 import { ApolloProvider } from "@apollo/client";
 import client from '../apollo-client'
 import PostBox from "../components/PostBox";
+import { Toaster } from "react-hot-toast";
 
 const OTTERSide: NextPage = () => {
 
@@ -16,6 +17,7 @@ const OTTERSide: NextPage = () => {
       </Head>
       <ApolloProvider client={client}>
         <SessionProvider>
+          <Toaster />
           <Header />
           <div className="my-7 mx-auto max-w-5xl"> 
             <PostBox />

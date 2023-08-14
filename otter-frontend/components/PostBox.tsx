@@ -7,6 +7,7 @@ import { useMutation } from "@apollo/client";
 import { ADD_POST, ADD_SPACE } from "../graphql/mutations";
 import client from "../apollo-client";
 import { GET_SPACE_BY_TOPIC } from '@/graphql/queries';
+import { toast } from 'react-hot-toast';
 
 type FormData = {
     postTitle: string;
@@ -31,6 +32,7 @@ function PostBox() {
 
     const onSubmit = handleSubmit (async(formData)  => {
         console.log(formData)
+        const notification = toast.loading('Creating new post...')
 
         try {
             // Query for the space topic...
@@ -95,8 +97,14 @@ function PostBox() {
         setValue('postImage', '')
         setValue('postTitle', '')
         setValue('space', '')
-        } catch (error) {
 
+        toast.success('New Post Created!', {
+            id: notification
+            })
+        } catch (error) {
+            toast.error('Whoops something went wrong!', {
+                id: notification, 
+            })
         }
     })
 
