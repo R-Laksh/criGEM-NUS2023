@@ -9,16 +9,29 @@ type Comment {
 
 type Post {
   body: String
-  comment: [Comment] @materializer(query: "commentUsingComment_post_id_fkey")
+  comments: [Comment] 
+    @materializer(
+      query: "getCommentByPostId",
+      arguments: [{ name: "post_id", field: "id" }]
+    )
   created_at: DateTime
   id: ID!
   image: String
   name: String
-  space: Space @materializer(query: "spaceUsingPost_space_id_fkey")
+  space: [Space] 
+    @materializer(
+      query: "getSpaceListById",
+      arguments: [{ name: "id", field: "space_id" }]
+    )
   space_id: ID
   title: String
-  vote: [Vote] @materializer(query: "voteUsingVote_post_id_fkey")
+  votes: [Vote] 
+    @materializer(
+      query: "getVotesByPostId",
+      arguments: [{ name: "post_id", field: "id" }]
+    )
 }
+
 
 type Space {
   created_at: DateTime
@@ -42,6 +55,15 @@ Feel free to modify them or aggregate more.
 """
 type Query {
   " Queries for type 'Comment' "
+
+  getCommentByPostId(post_id: ID!): [Comment]
+  @dbquery(
+    type: "postgresql"
+    query: """
+    SELECT * from "comment" where "post_id" = $1
+    """
+    configuration: "postgresql_config"
+  )
   comment(id: ID!): Comment
     @dbquery(
       type: "postgresql"
@@ -136,8 +158,18 @@ type Query {
   getSpaceListByTopic(topic: String!): [Space]
     @dbquery(
       type: "postgresql"
+      schema: "public"
       query: """
-      select * from "space" where "topic" = $1
+      SELECT * from "space" where "topic" = $1
+      """
+      configuration: "postgresql_config"
+    )
+
+  getSpaceListById(id: ID!): [Space]
+    @dbquery(
+      type: "postgresql"
+      query: """
+      SELECT * from "space" where "id" = $1
       """
       configuration: "postgresql_config"
     )
@@ -177,6 +209,15 @@ type Query {
       configuration: "postgresql_config"
     )
   " Queries for type 'Vote' "
+  getVotesByPostId(post_id: ID!): [Vote]
+    @dbquery(
+      type: "postgresql"
+      query: """
+      SELECT * from "vote" where "post_id" = $1
+      order by "created_at" desc
+      """
+      configuration: "postgresql_config"
+    )
   vote(id: ID!): Vote
     @dbquery(
       type: "postgresql"
@@ -310,13 +351,6 @@ type Mutation {
       configuration: "postgresql_config"
     )
   " Mutations for type 'Space' "
-  insertSpace( topic: String! ): Space
-    @dbquery(
-      type: "postgresql"
-      table: "space"
-      dml: INSERT
-      configuration: "postgresql_config"
-    )
   deleteSpace(id: ID!): Space
     @dbquery(
       type: "postgresql"

@@ -7,6 +7,7 @@ import { ApolloProvider } from "@apollo/client";
 import client from '../apollo-client'
 import PostBox from "../components/PostBox";
 import { Toaster } from "react-hot-toast";
+import Feed from '@/components/Feed';
 
 const OTTERSide: NextPage = () => {
 
@@ -23,7 +24,7 @@ const OTTERSide: NextPage = () => {
             <PostBox />
           </div>
           <div>
-            {/* Feed */}
+            <Feed />
           </div>
         </SessionProvider>
       </ApolloProvider>
