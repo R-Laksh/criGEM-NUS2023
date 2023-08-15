@@ -8,6 +8,8 @@ import {
     GiftIcon,
     ShareIcon
 } from "@heroicons/react/24/outline";
+import Avatar from "./Avatar";
+import TimeAgo from "react-timeago";
 
 type Props = {
     post: Post
@@ -24,8 +26,12 @@ function Post({ post } : Props) {
         </div>
         <div className="p-3 pb-1">
             {/* Header */}
-            <div>
-
+            <div className="flex items-center space-x-2">
+              <Avatar seed={post.space[0]?.topic}/>
+              <p className="text-xs text-gray-400">
+                <span className="font-bold text-black hover:text-blue-400 hover:underline">#{post.space[0]?.topic}</span>
+                • Posted by {post.name} <TimeAgo date={post.created_at} />
+              </p>
             </div>
 
             {/* Body */}
