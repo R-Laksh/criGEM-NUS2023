@@ -38,4 +38,5 @@ type Post = {
     votes: Vote[]
     comments: Comments[]
     space: Space[]
+    created_at: Date;
 }
