@@ -16,24 +16,28 @@ import {
   Bars3Icon,
   MagnifyingGlassIcon 
 } from "@heroicons/react/24/solid";
+import Link from "next/link";
 
 function Header() {
   const { data: session } = useSession();
   return (
-    <div className="sticky top-0 z-50 flex bg-white px-4 py-2 shadow-sm">
+    <div className="sticky top-0 z-50 flex items-center bg-white px-4 py-2 shadow-sm">
       <div className="relative h-10 w-21 flex-shrink-0 cursor-pointer">
-        <h1 style={{ 
-          fontSize: '2rem', 
-          fontWeight: 'bold', 
-          color: 'black', 
-          textTransform: 'uppercase',
-          letterSpacing: '-1px',
-          lineHeight: '1.2',    
-          padding: '0.2rem 0',  
-          display: 'inline-block',  
-        }}>
-          OTTERSIDE
-        </h1>
+        <Link href="/">
+          <h1 style={{ 
+            fontSize: '2rem', 
+            fontWeight: 'bold', 
+            color: 'black', 
+            textTransform: 'uppercase',
+            letterSpacing: '-1px',
+            lineHeight: '1.2',    
+            padding: '0.2rem 0',  
+            display: 'inline-block',  
+          }}>
+            OTTERSIDE
+          </h1>
+        </Link>
+        
       </div>
       <div className="mx-7 flex items-center xl:min-w-[300px]">
         <HomeIcon className="h-5 w-5"/>

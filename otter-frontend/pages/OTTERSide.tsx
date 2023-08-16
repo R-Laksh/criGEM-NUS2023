@@ -8,6 +8,7 @@ import client from '../apollo-client'
 import PostBox from "../components/PostBox";
 import { Toaster } from "react-hot-toast";
 import Feed from '@/components/Feed';
+import Avatar from '@/components/Avatar';
 
 const OTTERSide: NextPage = () => {
 
