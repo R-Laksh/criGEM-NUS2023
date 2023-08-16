@@ -8,7 +8,7 @@ function Feed() {
 
     const posts: Post[] = data?.postList;
   return (
-    <div>
+    <div className="mt-5 spaxe-y-4">
         {posts?.map(post => (
             <Post key={post.id} post={post}/>
         ))}
