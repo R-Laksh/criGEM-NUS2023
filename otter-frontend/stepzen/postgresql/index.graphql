@@ -108,7 +108,10 @@ type Query {
     @dbquery(
       type: "postgresql"
       schema: "public"
-      table: "post"
+      query: """
+      SELECT * FROM "post"
+      ORDER BY "post". "created_at" DESC
+      """
       configuration: "postgresql_config"
     )
   postPaginatedList(first: Int, after: Int): [Post]
@@ -213,8 +216,8 @@ type Query {
     @dbquery(
       type: "postgresql"
       query: """
-      SELECT * from "vote" where "post_id" = $1
-      order by "created_at" desc
+      SELECT * FROM "vote" WHERE "post_id" = $1
+      ORDER BY "created_at" DESC
       """
       configuration: "postgresql_config"
     )

@@ -8,6 +8,7 @@ import { ADD_POST, ADD_SPACE } from "../graphql/mutations";
 import client from "../apollo-client";
 import { GET_SPACE_BY_TOPIC } from '@/graphql/queries';
 import { toast } from 'react-hot-toast';
+import { GET_ALL_POSTS } from "../graphql/queries";
 
 type FormData = {
     postTitle: string;
@@ -18,7 +19,12 @@ type FormData = {
 
 function PostBox() {
     const { data: session } = useSession();
-    const [addPost] = useMutation(ADD_POST);
+    const [addPost] = useMutation(ADD_POST, {
+        refetchQueries: [
+            GET_ALL_POSTS,
+            'postList'
+        ]
+    });
     const [addSpace] = useMutation(ADD_SPACE);
     
     const [imageBoxOpen, setImageBoxOpen] = useState<boolean>(false);
