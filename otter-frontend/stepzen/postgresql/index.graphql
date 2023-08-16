@@ -9,7 +9,7 @@ type Comment {
 
 type Post {
   body: String
-  comments: [Comment] 
+  comment: [Comment] 
     @materializer(
       query: "getCommentByPostId",
       arguments: [{ name: "post_id", field: "id" }]
@@ -291,10 +291,9 @@ type Mutation {
       configuration: "postgresql_config"
     )
   insertComment(
-    name: String
-    post_id: ID
-    text: String
-    created_at: DateTime
+    name: String!
+    post_id: ID!
+    text: String!
   ): Comment
     @dbquery(
       type: "postgresql"
