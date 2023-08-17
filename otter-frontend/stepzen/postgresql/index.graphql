@@ -41,7 +41,7 @@ type Space {
 }
 
 type Vote {
-  created_at: DateTime!
+  created_at: DateTime
   id: ID!
   name: String
   post: Post @materializer(query: "postUsingVote_post_id_fkey")

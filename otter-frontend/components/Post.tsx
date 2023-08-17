@@ -26,17 +26,20 @@ function Post({ post } : Props) {
   const [vote, setVote] = useState<boolean>()
   const { data: session } = useSession();
 
-  const {data, loading} = useQuery(GET_ALL_VOTES_BY_POST_ID, {
+  const {data, loading, error } = useQuery(GET_ALL_VOTES_BY_POST_ID, {
     variables: {
       post_id: post?.id
     }
   })
+
+  console.log(error)
 
   const [addVote] = useMutation(ADD_VOTE, {
     refetchQueries: [GET_ALL_VOTES_BY_POST_ID, 'getVotesByPostId'],
   })
 
   const upVote = async (isUpvote: boolean) => {
+    // Check if user has already voted
     if (!session) {
       toast("You'll need to sign in to Vote!")
       return
@@ -46,14 +49,18 @@ function Post({ post } : Props) {
     if (vote == false && !isUpvote) return; 
 
     console.log('voting...', isUpvote)
-
-    await addVote({
+    console.log(typeof isUpvote)
+    const {
+      data: { insertVote: newVote },
+    } = await addVote({
       variables: {
-      post_id: post.id,
-      name: session?.user?.name,
-      upvote: isUpvote,
-      }
+        post_id: post.id,
+        name: session?.user?.name,
+        upvote: isUpvote,
+      },
     })
+
+    console.log('PLACED VOTE:', data)
   }
 
   useEffect(() => {
