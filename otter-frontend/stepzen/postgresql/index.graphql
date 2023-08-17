@@ -9,7 +9,7 @@ type Comment {
 
 type Post {
   body: String
-  comment: [Comment] 
+  comments: [Comment] 
     @materializer(
       query: "getCommentByPostId",
       arguments: [{ name: "post_id", field: "id" }]
@@ -194,6 +194,17 @@ type Query {
       type: "postgresql"
       query: """
       SELECT * from "space" where "id" = $1
+      """
+      configuration: "postgresql_config"
+    )
+
+  getSpaceListLimit(limit: Int!): [Space]
+    @dbquery(
+      type: "postgresql"
+      query: """
+      SELECT * FROM "space"
+      ORDER BY "created_at" DESC
+      LIMIT $1
       """
       configuration: "postgresql_config"
     )
