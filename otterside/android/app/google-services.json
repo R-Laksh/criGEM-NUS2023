@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "184869555067",
+    "project_id": "otterside",
+    "storage_bucket": "otterside.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:184869555067:android:00f50d30de6213041a4bde",
+        "android_client_info": {
+          "package_name": "com.example.otterside"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "184869555067-qdhgvuhogbe64mj2oorujjr5af0vul5i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.otterside",
+            "certificate_hash": "c3d738d6dae0ed0180b8a119270e8bda9404392e"
+          }
+        },
+        {
+          "client_id": "184869555067-u3a9kedts5bp709i459silnjliihus40.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUNIxUqtkZACIsf4bwFgQ9I78MOFZdNVs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "184869555067-u3a9kedts5bp709i459silnjliihus40.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "184869555067-n3fs8e9m5npngch7v14nib64nte96ci1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.otterside"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
