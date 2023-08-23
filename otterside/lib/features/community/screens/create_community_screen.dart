@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:otterside/core/common/loader.dart';
+import 'package:otterside/features/community/controller/community_controller.dart';
 
 class CreateCommunityScreen extends ConsumerStatefulWidget {
   const CreateCommunityScreen({super.key});
@@ -16,13 +18,23 @@ class _CreateCommunityScreenState extends ConsumerState<CreateCommunityScreen> {
     super.dispose();
     communityNameController.dispose();
   }
+
+  void createCommunity() {
+    ref.read(communityControllerProvider.notifier).createCommunity(
+      communityNameController.text.trim(), 
+      context,
+    );
+  }
   @override
   Widget build(BuildContext context) {
+    final isLoading = ref.watch(communityControllerProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Create a space'),
       ),
-      body: Padding(
+      body : isLoading
+        ? const Loader() 
+        : Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
@@ -43,7 +55,7 @@ class _CreateCommunityScreenState extends ConsumerState<CreateCommunityScreen> {
             ),
             const SizedBox(height:30),
             ElevatedButton(
-              onPressed: () {}, 
+              onPressed: createCommunity, 
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size(double.infinity, 50),
                 shape: RoundedRectangleBorder(
