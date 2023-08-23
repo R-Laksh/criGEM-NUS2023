@@ -29,7 +29,7 @@ class LoginScreen extends StatelessWidget {
         children: [
           const SizedBox(height: 30),
           const Text(
-            'OTTERside', 
+            'otterside', 
           style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,

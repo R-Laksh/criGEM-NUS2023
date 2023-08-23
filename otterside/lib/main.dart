@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:otterside/features/auth/screens/login_screen.dart';
 import 'package:otterside/firebase_options.dart';
 import 'package:otterside/theme/palette.dart';
@@ -8,7 +9,11 @@ void main() async {
 await Firebase.initializeApp(
   options: DefaultFirebaseOptions.currentPlatform,
 );
-  runApp(const MyApp());
+  runApp(
+    const ProviderScope(
+      child: MyApp()
+      )
+  );
 }
 
 class MyApp extends StatelessWidget {
