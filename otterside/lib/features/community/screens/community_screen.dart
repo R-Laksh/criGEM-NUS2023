@@ -5,12 +5,17 @@ import 'package:otterside/core/common/error_text.dart';
 import 'package:otterside/core/common/loader.dart';
 import 'package:otterside/features/auth/controller/auth_controller.dart';
 import 'package:otterside/features/community/controller/community_controller.dart';
+import 'package:routemaster/routemaster.dart';
 
 class CommunityScreen extends ConsumerWidget {
   final String name;
   const CommunityScreen({super.key, required this.name});
 
   // http://localhost:4000/#/flutter
+
+  void navigateToModTools(BuildContext context) {
+    Routemaster.of(context).push('/mod-tools/$name');
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -59,7 +64,9 @@ class CommunityScreen extends ConsumerWidget {
                         ),
                         community.mods.contains(user.uid)
                         ? OutlinedButton(
-                            onPressed: () {}, 
+                            onPressed: () {
+                              navigateToModTools(context);
+                            }, 
                             style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20),
