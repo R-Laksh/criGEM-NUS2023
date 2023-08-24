@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:otterside/core/common/error_text.dart';
 import 'package:otterside/core/common/loader.dart';
 import 'package:otterside/features/community/controller/community_controller.dart';
+import 'package:otterside/models/community_model.dart';
 import 'package:routemaster/routemaster.dart';
 
 class CommunityListDrawer extends ConsumerWidget {
@@ -10,6 +11,10 @@ class CommunityListDrawer extends ConsumerWidget {
 
   void navigateToCreateCommunity(BuildContext context) {
     Routemaster.of(context).push('/create-community');
+  }
+
+  void navigateToCommunity(BuildContext context, Community community) {
+    Routemaster.of(context).push('/#/${community.name}');
   }
 
   @override 
@@ -35,7 +40,9 @@ class CommunityListDrawer extends ConsumerWidget {
                       backgroundImage: NetworkImage(community.avatar),
                     ),
                     title: Text('#${community.name}'),
-                    onTap: () {},
+                    onTap: () {
+                      navigateToCommunity(context, community);
+                    },
                   );
                 }
               ),
