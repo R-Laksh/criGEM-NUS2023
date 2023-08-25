@@ -7,6 +7,7 @@ import 'package:otterside/core/common/loader.dart';
 import 'package:otterside/core/constants/constants.dart';
 import 'package:otterside/core/utils.dart';
 import 'package:otterside/features/community/controller/community_controller.dart';
+import 'package:otterside/models/community_model.dart';
 import 'package:otterside/theme/palette.dart';
 
 class EditCommunityScreen extends ConsumerStatefulWidget {
@@ -43,8 +44,19 @@ class _EditCommunityScreenState extends ConsumerState<EditCommunityScreen> {
       });
     }
   }
+
+  void save(Community community) {
+    ref.read(communityControllerProvider.notifier).editCommunity(
+      profileFile: profileFile,
+      bannerFile: bannerFile,
+      context: context,
+      community: community, 
+    );
+  }
   @override
   Widget build(BuildContext context) {
+    final isLoading = ref.watch(communityControllerProvider);
+
     return ref.watch(getCommunityByNameProvider(widget.name)).when(
       data: (community) => Scaffold(
         backgroundColor: Pallete.darkModeAppTheme.backgroundColor,
@@ -53,12 +65,14 @@ class _EditCommunityScreenState extends ConsumerState<EditCommunityScreen> {
           centerTitle: false,
           actions: [
             TextButton(
-              onPressed: () {},
+              onPressed: () => save(community),
               child: const Text('Save'),
             ),
           ],
         ),
-        body: Padding(
+        body: isLoading 
+            ? const Loader() 
+            : Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
@@ -97,13 +111,19 @@ class _EditCommunityScreenState extends ConsumerState<EditCommunityScreen> {
                       bottom: 20,
                       left: 20,
                       child: GestureDetector(
-                        child: CircleAvatar(
-                          backgroundImage: NetworkImage(community.avatar),
-                          radius: 32,
-                        ),
-                      ),
-                    ),
-                  ],
+                        onTap: selectProfileImage,
+                        child: profileFile !=null
+                            ? CircleAvatar(
+                                backgroundImage: FileImage(profileFile!),
+                                radius: 32,
+                              )
+                            : CircleAvatar(
+                                backgroundImage: NetworkImage(community.avatar),
+                                radius: 32,
+                              ),
+                            ),
+                          ),
+                        ],
                 ),
               ),
             ],
