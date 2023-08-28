@@ -33,7 +33,7 @@ class AddPostScreen extends ConsumerWidget {
               elevation: 16, 
               child: Center(
                 child: Icon(
-                  Icons.font_download_outlined, 
+                  Icons.image_outlined, 
                   size: iconSize,
                 ),
               ),
@@ -53,7 +53,7 @@ class AddPostScreen extends ConsumerWidget {
               elevation: 16, 
               child: Center(
                 child: Icon(
-                  Icons.image_outlined, 
+                  Icons.font_download_outlined, 
                   size: iconSize,
                 ),
               ),
