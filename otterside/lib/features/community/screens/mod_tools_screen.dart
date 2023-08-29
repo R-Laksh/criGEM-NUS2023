@@ -29,13 +29,13 @@ class ModToolsScreen extends StatelessWidget {
             title: const Text('Add Moderators'),
             onTap: () => navigateToAddMods(context),
           ),
-           ListTile(
+          ListTile(
             leading: const Icon(Icons.edit),
             title: const Text('Edit Space'),
             onTap: () => navigateToModTools(context),
           ),
-        ]
-      )
+        ],
+      ),
     );
   }
 }

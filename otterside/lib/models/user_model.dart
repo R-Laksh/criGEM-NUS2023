@@ -61,7 +61,7 @@ class UserModel {
       awards: List<String>.from(map['awards']),
     );
   }
-  
+
   @override
   String toString() {
     return 'UserModel(name: $name, profilePic: $profilePic, banner: $banner, uid: $uid, isAuthenticated: $isAuthenticated, karma: $karma, awards: $awards)';

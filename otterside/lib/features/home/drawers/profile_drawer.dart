@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:otterside/features/auth/controller/auth_controller.dart';
-import 'package:otterside/theme/palette.dart';
+import 'package:otterside/theme/pallete.dart';
 import 'package:routemaster/routemaster.dart';
 
 class ProfileDrawer extends ConsumerWidget {
@@ -32,10 +32,12 @@ class ProfileDrawer extends ConsumerWidget {
               radius: 70,
             ),
             const SizedBox(height: 10),
-            Text('${user.name}', style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-            ),
+            Text(
+              '${user.name}',
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+              ),
             ),
             const SizedBox(height: 10),
             const Divider(),
@@ -46,16 +48,19 @@ class ProfileDrawer extends ConsumerWidget {
             ),
             ListTile(
               title: const Text('Log Out'),
-              leading:  Icon(Icons.logout, color: Pallete.redColor,),
+              leading: Icon(
+                Icons.logout,
+                color: Pallete.redColor,
+              ),
               onTap: () => logOut(ref),
             ),
             Switch.adaptive(
-              value: ref.watch(themeNotifierProvider.notifier).mode == ThemeMode.dark, 
-              onChanged: (val) => toggleTheme(ref), 
-            )
-          ]
-        )
-      )
+              value: ref.watch(themeNotifierProvider.notifier).mode == ThemeMode.dark,
+              onChanged: (val) => toggleTheme(ref),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

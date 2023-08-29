@@ -4,9 +4,14 @@ import 'package:otterside/core/common/loader.dart';
 import 'package:otterside/core/common/sign_in_button.dart';
 import 'package:otterside/core/constants/constants.dart';
 import 'package:otterside/features/auth/controller/auth_controller.dart';
+import 'package:otterside/responsive/responsive.dart';
 
 class LoginScreen extends ConsumerWidget {
-  const LoginScreen ({Key? key}) : super(key: key);
+  const LoginScreen({Key? key}) : super(key: key);
+
+  void signInAsGuest(WidgetRef ref, BuildContext context) {
+    ref.read(authControllerProvider.notifier).signInAsGuest(context);
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -16,45 +21,45 @@ class LoginScreen extends ConsumerWidget {
       appBar: AppBar(
         title: Image.asset(
           Constants.logoPath,
-          height: 40, 
+          height: 40,
         ),
         actions: [
           TextButton(
-            onPressed: () {}, 
+            onPressed: () => signInAsGuest(ref, context),
             child: const Text(
-              'Skip', 
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
+              'Skip',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
           ),
         ],
       ),
       body: isLoading
           ? const Loader()
           : Column(
-        children: [
-          const SizedBox(height: 30),
-          const Text(
-            'otterside', 
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 0.5,
-          ),
-          ),
-          const SizedBox(height: 30),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Image.asset(
-              Constants.loginEmotePath, 
-              height: 400,
+              children: [
+                const SizedBox(height: 30),
+                const Text(
+                  'Welcome to otterside',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 0.5,
+                  ),
+                ),
+                const SizedBox(height: 30),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image.asset(
+                    Constants.loginEmotePath,
+                    height: 400,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                const Responsive(child: SignInButton()),
+              ],
             ),
-          ),
-          const SizedBox(height: 20),
-          const SignInButton(), 
-        ],
-      )
     );
   }
 }

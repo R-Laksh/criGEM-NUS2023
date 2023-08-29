@@ -25,10 +25,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -69,7 +66,19 @@ class DefaultFirebaseOptions {
     messagingSenderId: '184869555067',
     projectId: 'otterside',
     storageBucket: 'otterside.appspot.com',
+    androidClientId: '184869555067-qdhgvuhogbe64mj2oorujjr5af0vul5i.apps.googleusercontent.com',
     iosClientId: '184869555067-n3fs8e9m5npngch7v14nib64nte96ci1.apps.googleusercontent.com',
     iosBundleId: 'com.example.otterside',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyA-p4OVsY2Fu9KIdk_TEeZ_TY0D7wqFmWM',
+    appId: '1:184869555067:ios:238a3ad02a59322f1a4bde',
+    messagingSenderId: '184869555067',
+    projectId: 'otterside',
+    storageBucket: 'otterside.appspot.com',
+    androidClientId: '184869555067-qdhgvuhogbe64mj2oorujjr5af0vul5i.apps.googleusercontent.com',
+    iosClientId: '184869555067-gnp80g21s6l2r4tvaj48s5pumbnun2uk.apps.googleusercontent.com',
+    iosBundleId: 'com.example.otterside.RunnerTests',
   );
 }
