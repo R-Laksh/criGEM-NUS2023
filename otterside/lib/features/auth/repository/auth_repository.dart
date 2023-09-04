@@ -59,7 +59,6 @@ class AuthRepository {
           userCredential = await _auth.currentUser!.linkWithCredential(credential);
         }
       }
-
       UserModel userModel;
 
       if (userCredential.additionalUserInfo!.isNewUser) {
