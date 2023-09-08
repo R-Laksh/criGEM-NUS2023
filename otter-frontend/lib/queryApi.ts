@@ -22,7 +22,7 @@ const query = async (prompt: string, chatId: string, model: string) => {
         randomNumber.toFixed(5)
     );
 
-    return `The binding score of this RNA is ${res}. More results generation soon.`;
+    return `The binding score of this RNA is ${res}.`;
 };
 
 export default query;
