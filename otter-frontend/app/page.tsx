@@ -1,3 +1,5 @@
+/* The code below is a functional component in TypeScript React. It defines a component called
+`HomePage` that renders a page with three sections. */
 import React from 'react';
 import '../styles/globals.css';
 import { QuestionMarkCircleIcon, CheckIcon, BeakerIcon } from "@heroicons/react/24/outline";

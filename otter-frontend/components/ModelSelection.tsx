@@ -1,3 +1,7 @@
+/**
+ * This is a React component that renders a model selection dropdown using the `react-select` library
+ * and fetches the available models from an API using `useSWR`.
+ */
 'use client'
 import useSWR from "swr";
 import Select from "react-select";

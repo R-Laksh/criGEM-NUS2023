@@ -1,3 +1,5 @@
+/* The code is importing the `ApolloClient` and `InMemoryCache` classes from the `@apollo/client`
+package. */
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 
 const client = new ApolloClient({

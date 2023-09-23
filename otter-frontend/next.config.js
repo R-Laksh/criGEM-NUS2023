@@ -1,3 +1,4 @@
+/* The code is configuring the Next.js application. */
 /** @type {import('next').NextConfig} */
 module.exports = {
     reactStrictMode: true,

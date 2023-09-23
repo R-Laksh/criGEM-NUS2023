@@ -1,3 +1,5 @@
+/* The code snippet is a TypeScript React component called `SideBar`. It is responsible for rendering
+the sidebar of a chat application. */
 'use client'
 
 import { query, orderBy, collection } from "firebase/firestore";

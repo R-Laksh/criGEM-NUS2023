@@ -1,3 +1,4 @@
+/* The code is importing functions and objects from the Firebase SDK for web. */
 import { getApp, getApps, initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 

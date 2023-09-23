@@ -1,3 +1,12 @@
+/**
+ * The function `query` takes a prompt, chatId, and model as input and uses the Otter API to generate a
+ * completion based on the prompt, returning a sentence with the binding score of an RNA.
+ * @param {number} min - The `min` parameter is the minimum value of the random number range. It is
+ * used in the `getRandomNumber` function to generate a random number between `min` and `max`.
+ * @param {number} max - The `max` parameter is the maximum value that the random number can be. In the
+ * code snippet, it is used to specify the upper bound for generating a random number.
+ * @returns The function `query` returns a string that states the binding score of an RNA.
+ */
 import otter from './otter';
 
 const getRandomNumber = (min: number, max: number): number => {

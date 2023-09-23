@@ -1,3 +1,5 @@
+/* The code below is a TypeScript React component called `RootLayout`. It is responsible for
+rendering the layout of OTTER. */
 import { SessionProvider } from "../components/SessionProvider";
 import { getServerSession } from "next-auth";
 import SideBar from "../components/SideBar";

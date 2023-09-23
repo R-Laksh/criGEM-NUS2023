@@ -1,3 +1,8 @@
+/**
+ * This is a login component in TypeScript React that displays a logo and a button to sign in using
+ * Google.
+ * @returns The Login component is being returned.
+ */
 'use client'
 import { signIn } from "next-auth/react";
 import Image from "next/image";

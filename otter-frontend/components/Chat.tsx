@@ -1,3 +1,9 @@
+/**
+ * This is a TypeScript React component that renders a chat interface and displays messages from a
+ * Firestore collection.
+ * @property {string} chatId - The `chatId` property is a string that represents the unique identifier
+ * of the chat. It is used to query the messages specific to that chat from the Firestore database.
+ */
 'use client';
 
 import { collection, orderBy, query } from "firebase/firestore";

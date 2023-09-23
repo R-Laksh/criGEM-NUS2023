@@ -1,3 +1,10 @@
+/**
+ * The `ChatInput` component is a form that allows users to enter a prompt and send it as a message in
+ * a chat, triggering a calculation by the OTTER model.
+ * @param {Props}  - - `chatId`: The ID of the chat that the input is associated with. This is used to
+ * determine the location in the database where the message will be stored.
+ * @returns The ChatInput component is being returned.
+ */
 'use client';
 
 import { serverTimestamp, addDoc, collection } from "firebase/firestore";

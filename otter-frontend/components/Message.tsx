@@ -1,3 +1,8 @@
+/**
+ * This is a React component that renders a message with different styles based on the user's name.
+ * @param {Props}  - - `Props`: A type that defines the props for the `Message` component.
+ * @returns The `Message` component is being returned.
+ */
 import { DocumentData } from "firebase/firestore";
 
 type Props = {

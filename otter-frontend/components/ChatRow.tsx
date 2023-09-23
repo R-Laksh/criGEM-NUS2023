@@ -1,3 +1,9 @@
+/**
+ * The `ChatRow` component is a React component that displays a row for a chat in a chat list,
+ * including the chat name, a beaker icon, and a trash icon for deleting the chat.
+ * @param {Props}  - 1. `BeakerIcon` and `TrashIcon` are icons imported from the `@heroicons/react`
+ * library. They are used to display icons in the UI.
+ */
 import { BeakerIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { collection, deleteDoc, doc } from "firebase/firestore";
 import { useSession } from "next-auth/react";

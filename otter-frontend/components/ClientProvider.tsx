@@ -1,3 +1,8 @@
+/**
+ * The `ClientProvider` function returns a React component that renders a `Toaster` component from the
+ * `react-hot-toast` library, which displays toast notifications at the top center of the screen.
+ * @returns The code is returning a React component called `ClientProvider`.
+ */
 import { Toaster } from "react-hot-toast";
 
 export default function ClientProvider() {

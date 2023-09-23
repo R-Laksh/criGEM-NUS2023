@@ -1,3 +1,7 @@
+/**
+ * The `NewChat` component is a button that creates a new chat and redirects the user to the chat page.
+ * @returns The NewChat component is being returned.
+ */
 'use client'
 
 import { PlusIcon } from "@heroicons/react/24/solid";

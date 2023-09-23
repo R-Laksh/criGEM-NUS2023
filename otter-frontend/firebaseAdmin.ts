@@ -1,3 +1,6 @@
+/* The code is importing the `admin` module from the `firebase-admin` package and the `getApps`
+function from the `firebase-admin/app` module. It then parses the `FIREBASE_SERVICE_ACCOUNT_KEY`
+environment variable as a JSON object and assigns it to the `serviceAccount` variable. */
 import admin from "firebase-admin";
 import { getApps } from "firebase-admin/app";
 
